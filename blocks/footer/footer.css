@@ -1,0 +1,10 @@
+.footer {
+  margin-top: 66px;
+  display: inline-flex;
+}
+
+@media (max-width: 400px) {
+  .footer {
+    margin-top: 48px;
+  }
+}

@@ -1,0 +1,15 @@
+.container {
+  max-width: 910px;
+  margin: 0 auto;
+  padding: 0 15px 0 15px;
+  box-sizing: border-box;
+  outline: 2px dashed red;
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 0 19px 0 19px;
+    width: 100%;
+  }
+}
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto Russia</title>
+  <link rel="stylesheet" href="./pages/index.css" />
+
+</head>
+<body class="page">
+  <div class="container">
+    <header class="header">
+      <img src="./images/logo.svg" alt="логотип" class="header__logo">
+    </header>
+    <main>
+    <section class="profile">
+      <div class="profile__block">
+        <img src="./images/avatar.jpg" alt="аватар пользователя" class="profile__avatar">
+        <div class="profile__info">
+          <div class="profile__change">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="button button__type_edit">
+              <span class="sr-only">Редактировать</span>
+            </button>
+          </div>
+        <p class="profile__about">Исследователь океана</p>
+        </div>
+      </div>
+      <button class="button button__type_add">
+        <span class="sr-only">Добавить</span>
+      </button>
+    </section>
+    <section class="places">
+      <section class="place">
+        <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="place__photo">
+        <div class="place__descriprion">
+          <h2 class="place__name">Карачаевск</h2>
+          <div class="place__like"></div>
+        </div>
+      </section>
+      <section class="place">
+        <img src="./images/elbrus.jpg" alt="фото Эльбруса" class="place__photo">
+        <div class="place__descriprion">
+          <h2 class="place__name">Гора Эльбрус</h2>
+          <div class="place__like"></div>
+        </div>
+      </section>
+      <section class="place">
+          <img src="./images/hoboi.jpg" alt="фото мыса Хобой" class="place__photo">
+        <div class="place__descriprion">
+          <h2 class="place__name">мыс Хобой</h2>
+          <div class="place__like"></div>
+        </div>
+      </section>
+      <section class="place">
+        <img src="./images/baikal.jpg" alt="фото Байкала" class="place__photo">
+        <div class="place__descriprion">
+          <h2 class="place__name">озеро Байкал</h2>
+          <div class="place__like"></div>
+        </div>
+      </section>
+      <section class="place">
+        <img src="./images/dombai.jpg" alt="фото Домбай" class="place__photo">
+        <div class="place__descriprion">
+          <h2 class="place__name">Домбай</h2>
+          <div class="place__like"></div>
+        </div>
+      </section>
+      <section class="place">
+        <img src="./images/kamchatka.jpg" alt="фото Камчатки" class="place__photo">
+        <div class="place__descriprion">
+          <h2 class="place__name">Камчатка</h2>
+          <div class="place__like"></div>
+        </div>
+      </section>
+    </section>
+
+</main>
+
+<footer class="footer">
+  <p class="footer__text">&copy; 2023 Mesto Russia</p>
+</footer>
+<div class="popup">
+  <div class="popup__container">
+    <div class="popup__body">
+      <button class="popup__close-button"></button>
+      <form action="" class="popup-form">
+        <h2 class="popup__title">Редактировать профиль</h2>
+          <input name="popup-username" type="text" class="popup__input popup__input_el_name" required>
+          <input name="popup-job" type="text" class="popup__input popup__input_el_job" required>
+          <button class="popup__button" type="submit">Сохранить</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+</div>
+<script src=""></script>
+</body>
+</html>
