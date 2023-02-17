@@ -11,4 +11,4 @@
 ## Планы по доработке
 * Добавить новые блоки place
 
-Ссылка на проект на [GitHub Pages](https://irinagarmaeva.github.io/russian-travel/)
+Ссылка на проект на [GitHub Pages](https://irinagarmaeva.github.io/mesto/)
