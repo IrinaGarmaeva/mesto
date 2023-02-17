@@ -16,10 +16,10 @@
 @import url('../blocks/profile/__change/profile__change.css');
 @import url('../blocks/profile/__name/profile__name.css');
 @import url('../blocks/button/button.css');
-@import url('../blocks/button/__type/button__type_edit.css');
+@import url('../blocks/button/_type/button_type_edit.css');
 @import url('../blocks/sr-only/sr-only.css');
 @import url('../blocks/profile/__about/profile__about.css');
-@import url('../blocks/button/__type/button__type_add.css');
+@import url('../blocks/button/_type/button_type_add.css');
 
 
 @import url('../blocks/places/places.css');
