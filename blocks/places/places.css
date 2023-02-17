@@ -5,65 +5,10 @@
   grid-template-rows: repeat(auto-fit, 361px);
   gap: 20px 17px;
   justify-content: center;
-  outline: 2px dashed yellow;
 }
 
 @media (max-width: 400px) {
   .places {
     margin: 36px 0 0 0;
   }
-}
-.place {
-  display: flex;
-  flex-direction: column;
-  background: #ffffff;
-  border-radius: 10px;
-  outline: 2px dashed blue;
-  max-height: 361px;
-}
-
-.place__photo {
-  max-width: 282px;
-  width: 100%;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  object-fit: cover;
-  aspect-ratio: 1 / 1;
-}
-
-.place__descriprion {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* align-self: center; */
-  height: 100%;
-  padding: 25px 18px 31px 18px;
-}
-
-.place__name {
-  margin: 0;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.place__like {
-  width: 22px;
-  height: 19px;
-  background-image: url("../../images/like\ icon.svg");
-  background-repeat: no-repeat;
-  background-size: 22px 19px;
-  align-self: center;
-  opacity: 1;
-  cursor: pointer;
-  transition: opacity 1s ease;
-}
-
-.place__like_active {
-  background-image: url('../../images/likeActive.svg');
-}
-
-.place__like:hover {
-  opacity: 0.5;
-  transition: opacity 1s ease;
 }

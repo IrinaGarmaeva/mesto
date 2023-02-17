@@ -1,27 +1,23 @@
 .header {
   /* padding: 45px 0 0 0; */
-  margin-top: 45px;
-  width: 100%;
+  /* margin-top: 45px;
+  width: 100%; */
   /* outline: 2px dashed yellow; */
-  height: 74px;
-  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
-
+  max-height: 74px;
+  max-width: 910px;
+  margin: 45px auto 0;
+  padding: 0 15px 0 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 400px) {
   .header {
     margin-top: 28px;
-    height: 56px;
+    max-height: 56px;
+    padding: 0;
   }
 }
 
-.header__logo {
-  max-width: 142px;
-}
 
-@media (max-width: 400px) {
-  .header__logo {
-    max-width: 103.74px;
-    margin-left: 8px;
-  }
-}

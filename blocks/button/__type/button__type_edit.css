@@ -1,0 +1,18 @@
+.button__type_edit {
+  width: 24px;
+  height: 24px;
+  background-image: url('../../../images/editButton.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 400px) {
+  .button__type_edit {
+    width: 18px;
+    height: 18px;
+    background-size: 18px 18px;
+  }
+}

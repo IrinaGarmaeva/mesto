@@ -1,10 +1,10 @@
 .footer {
-  margin-top: 66px;
-  display: inline-flex;
+  padding-top: 66px;
+  padding-bottom: 60px;
 }
 
 @media (max-width: 400px) {
   .footer {
-    margin-top: 48px;
+    padding-top: 48px;
   }
 }

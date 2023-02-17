@@ -1,17 +1,14 @@
 # Проект: Место
+#### Выполнила Гармаева Ирина
+### Проект Mesto: интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки [по макету Figma ](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
-### Обзор
+## Использованные технологии
+* HTML
+* CSS
+* GRID
+* Java Script
 
-* Figma
-* Картинки
+## Планы по доработке
+* Добавить новые блоки place
 
-**Figma**
-
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-
-**Картинки**
-
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+Ссылка на проект на [GitHub Pages](https://irinagarmaeva.github.io/russian-travel/)
