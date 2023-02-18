@@ -5,7 +5,7 @@
 }
 
 @media (max-width: 700px) {
-  .popup-form {
+  .popup__form {
     margin: 25px 22px 25px 22px;
   }
 }

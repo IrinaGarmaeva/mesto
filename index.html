@@ -11,7 +11,6 @@
 <body class="page">
     <header class="header">
       <img src="./images/logo.svg" alt="логотип" class="header__logo">
-      <div class="header__line"></div>
     </header>
     <main class="container">
     <section class="profile">
@@ -32,7 +31,7 @@
       </button>
     </section>
     <section class="places" aria-label="Секция с карточками">
-      <section class="place">
+      <article class="place">
         <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="place__photo">
         <div class="place__descriprion">
           <h2 class="place__name">Карачаевск</h2>
@@ -40,8 +39,8 @@
             <span class="sr-only">Лайк</span>
           </button>
         </div>
-      </section>
-      <section class="place">
+      </article>
+      <article class="place">
         <img src="./images/elbrus.jpg" alt="фото Эльбруса" class="place__photo">
         <div class="place__descriprion">
           <h2 class="place__name">Гора Эльбрус</h2>
@@ -49,8 +48,8 @@
             <span class="sr-only">Лайк</span>
           </button>
         </div>
-      </section>
-      <section class="place">
+      </article>
+      <article class="place">
           <img src="./images/hoboi.jpg" alt="фото мыса Хобой" class="place__photo">
         <div class="place__descriprion">
           <h2 class="place__name">мыс Хобой</h2>
@@ -58,8 +57,8 @@
             <span class="sr-only">Лайк</span>
           </button>
         </div>
-      </section>
-      <section class="place">
+      </article>
+      <article class="place">
         <img src="./images/baikal.jpg" alt="фото Байкала" class="place__photo">
         <div class="place__descriprion">
           <h2 class="place__name">озеро Байкал</h2>
@@ -67,8 +66,8 @@
             <span class="sr-only">Лайк</span>
           </button>
         </div>
-      </section>
-      <section class="place">
+      </article>
+      <article class="place">
         <img src="./images/dombai.jpg" alt="фото Домбай" class="place__photo">
         <div class="place__descriprion">
           <h2 class="place__name">Домбай</h2>
@@ -76,8 +75,8 @@
             <span class="sr-only">Лайк</span>
           </button>
         </div>
-      </section>
-      <section class="place">
+      </article>
+      <article class="place">
         <img src="./images/kamchatka.jpg" alt="фото Камчатки" class="place__photo">
         <div class="place__descriprion">
           <h2 class="place__name">Камчатка</h2>
@@ -85,7 +84,7 @@
             <span class="sr-only">Лайк</span>
           </button>
         </div>
-      </section>
+      </article>
     </section>
 </main>
 <footer class="footer container">
@@ -93,18 +92,15 @@
 </footer>
 <div class="popup">
   <div class="popup__container">
-    <div class="popup__body">
-      <button class="popup__close-button"></button>
-      <form action="URL" class="popup__form">
-        <h2 class="popup__title">Редактировать профиль</h2>
+      <button class="popup__button_type_close" type="button"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form action="URL" class="popup__form" name="popup-form">
           <input name="popup-username" type="text" class="popup__input popup__input_el_name" required>
           <input name="popup-job" type="text" class="popup__input popup__input_el_job" required>
           <button class="popup__button" type="submit">Сохранить</button>
       </form>
-    </div>
-
   </div>
 </div>
-<script src="./script/index.js"></script>
+<script src="./scripts/index.js"></script>
 </body>
 </html>

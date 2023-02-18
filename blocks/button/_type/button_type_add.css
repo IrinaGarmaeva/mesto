@@ -6,6 +6,8 @@
   background-size: 22px 22px;
   background-position: center;
   flex-shrink: 0;
+  border: 2px solid #fff;
+  border-radius: 2px;
 }
 
 

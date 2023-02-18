@@ -1,6 +1,7 @@
 .button_type_edit {
   width: 24px;
   height: 24px;
+  border: 1px solid #fff;
   background-image: url('../../../images/editButton.svg');
   background-position: center;
   background-repeat: no-repeat;
@@ -13,6 +14,6 @@
   .button_type_edit {
     width: 18px;
     height: 18px;
-    background-size: 18px 18px;
+    background-size: 7.5px 7.5px;
   }
 }

@@ -1,6 +1,6 @@
 .popup__button {
-  background-color: #000000;
-  font-family: 'Inter';
+  background-color: #000;
+  font-family: 'Inter', 'Aria', sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 121%;
@@ -9,12 +9,21 @@
   padding: 12px 0 16px;
   border: 0;
   margin-top: 47px;
+  opacity: 1;
+  transition: opacity 0.7s ease;
+}
+
+.popup__button:hover {
+  opacity: 0.8;
 }
 
 @media (max-width: 700px) {
   .popup__button {
     padding: 14px 0 14px;
-    margin-top: 47px;
+    margin-top: 45px;
+    font-size: 14px;
+    line-height: 121.4%;
+    text-align: center;
   }
 }
 
