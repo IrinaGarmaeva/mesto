@@ -13,6 +13,6 @@
   transition: opacity 1s ease;
 }
 
-.place__like:hover {
+.place__like-button:hover {
   opacity: 0.5;
 }
