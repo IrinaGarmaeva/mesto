@@ -31,7 +31,8 @@
       </button>
     </section>
     <section class="places" aria-label="Секция с карточками">
-      <article class="place">
+
+      <!-- <article class="place">
         <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="place__photo">
         <div class="place__descriprion">
           <h2 class="place__name">Карачаевск</h2>
@@ -84,23 +85,68 @@
             <span class="sr-only">Лайк</span>
           </button>
         </div>
-      </article>
+      </article> -->
+      <!-- <article class="place">
+        <img class="place__photo" src="https://images.unsplash.com/photo-1603396975505-def2e41d8a00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80" alt="#">
+        <button сlass="place__delete-button" type="button">
+          <span class="sr-only">Удалить</span>
+        </button>
+        <div class="place__descriprion">
+          <h2 class="place__name">ира</h2>
+          <button class="place__like-button" type="button">
+            <span class="sr-only">Лайк</span>
+          </button>
+        </div>
+      </article> -->
     </section>
 </main>
 <footer class="footer container">
   <p class="footer__text">&copy; 2023 Mesto Russia</p>
 </footer>
-<div class="popup">
+<div class="popup" id="edit-profile">
   <div class="popup__container">
-      <button class="popup__close-button" type="button"></button>
+      <button class="popup__close-button popup__close-button_type_profile" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form action="URL" class="popup__form" name="popup-form">
+      <form action="URL" class="popup__form popup__profile-form" id="popup-profile-form" name="popup-form">
           <input name="popup-username" type="text" class="popup__input popup__input_el_name" required>
           <input name="popup-job" type="text" class="popup__input popup__input_el_job" required>
           <button class="popup__button" type="submit">Сохранить</button>
       </form>
   </div>
 </div>
+<div class="popup" id="add-place">
+  <div class="popup__container">
+      <button class="popup__close-button close-place__button" type="button"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form action="URL" class="popup__form popup__place-form" name="popup-form">
+          <input name="popup-place" type="text" class="popup__input popup__input_el_place-name" placeholder="Название" required>
+          <input name="popup-link" type="text" class="popup__input popup__input_el_place-link" placeholder="Ссылка на картинку" required>
+          <button class="popup__button" type="submit">Создать</button>
+      </form>
+  </div>
+</div>
+<div class="popup popup__open-image" id="open-image">
+  <div class="popup__block">
+    <figure class="popup__image">
+        <button class="popup__close-button popup__close-button_type_image" type="button"></button>
+        <img class="popup__photo" alt="#">
+        <figcaption class="popup__heading"></figcaption>
+    </figure>
+</div>
+<template id="cardTemplate">
+  <article class="place">
+    <img class="place__photo" src="#" alt="#">
+    <button class="place__delete-button" type="button">
+      <span class="sr-only">Удалить</span>
+    </button>
+    <div class="place__descriprion">
+      <h2 class="place__name"></h2>
+      <button class="place__like-button" type="button">
+        <span class="sr-only">Лайк</span>
+      </button>
+    </div>
+  </article>
+</template>
 <script src="./scripts/index.js"></script>
 </body>
 </html>
