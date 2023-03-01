@@ -13,7 +13,7 @@ const userJobElement = document.querySelector('.profile__about');
 // Переменны для попапа добавления/удаления карточек====================================================================================
 const popupPlace = document.querySelector('#add-place');
 const popupPlaceForm = document.querySelector('.popup__place-form');
-const closeAddPlaceButton = document.querySelector('.close-place__button');
+const closeAddPlaceButton = document.querySelector('.popup__close-button_type_place');
 const placeNameInput = document.querySelector('.popup__input_el_place-name');
 const placeLinkInput = document.querySelector('.popup__input_el_place-link');
 const placeNameElement = document.querySelector('.place__name');
