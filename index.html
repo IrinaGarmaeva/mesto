@@ -39,7 +39,7 @@
     <footer class="footer container">
       <p class="footer__text">&copy; 2023 Mesto Russia</p>
     </footer>
-    <div class="popup" id="edit-profile">
+    <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <button
           class="popup__close-button popup__close-button_type_profile"
@@ -50,25 +50,27 @@
           action="URL"
           class="popup__form popup__profile-form"
           id="popup-profile-form"
-          name="popup-form"
+          name="profile-form"
         >
           <input
             name="popup-username"
             type="text"
             class="popup__input popup__input_el_name"
+            placeholder="Имя"
             required
           />
           <input
             name="popup-job"
             type="text"
             class="popup__input popup__input_el_job"
+            placeholder="Описание"
             required
           />
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
-    <div class="popup" id="add-place">
+    <div class="popup popup_type_add-place">
       <div class="popup__container">
         <button
           class="popup__close-button popup__close-button_type_place"
@@ -78,7 +80,7 @@
         <form
           action="URL"
           class="popup__form popup__place-form"
-          name="popup-form"
+          name="place-form"
         >
           <input
             name="popup-place"
@@ -98,7 +100,7 @@
         </form>
       </div>
     </div>
-    <div class="popup popup_open-image" id="open-image">
+    <div class="popup popup_type_open-image">
       <div class="popup__block">
         <figure class="popup__image">
           <button
