@@ -38,6 +38,12 @@ const popupProfileForm = document.querySelector('.popup__profile-form');
 const profileNameInput = document.querySelector('.popup__input_el_name');
 const profileJobInput = document.querySelector('.popup__input_el_job');
 const popupProfile = document.querySelector('.popup_type_edit-profile');
+const popupContainer = document.querySelector('.popup__container');
+const popupForm = document.querySelector('.popup__form');
+const popupSubmitPlaceButton = document.querySelector('.popup__button_type_place');
+const popupSubmitProfileButton = document.querySelector('.popup__button_type_profile');
+const popupList = document.querySelectorAll('.popup');
+
 
 const userNameElement = document.querySelector('.profile__name');
 const userJobElement = document.querySelector('.profile__about');
@@ -60,13 +66,17 @@ const popupCloseImageButton = document.querySelector('.popup__close-button_type_
 // ПЕРЕМЕННЫЕ ДЛЯ ШАБЛОНА КАРТОЧЕК
 const cardTemplate = document.querySelector('#cardTemplate').content;
 
+// import { disableButton (button) } from "./validate0.js";
+
 // УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ ОТКРЫТИЯ/ЗАКРЫТИЯ ПОПАПА
 function openPopup (popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEscape);
 };
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEscape);
 };
 
 // Функция ОТКРЫТИЯ ПОПАПА ПРОФИЛЯ =============================================================================================
@@ -74,6 +84,7 @@ function handleOpenPopupProfile() {
   openPopup(popupProfile);
   profileNameInput.value = userNameElement.textContent;
   profileJobInput.value = userJobElement.textContent;
+  // disableButton(popupSubmitProfileButton);
 };
 
 profileEditButton.addEventListener('click', handleOpenPopupProfile);
@@ -92,6 +103,7 @@ function handleProfileFormSubmit(evt) {
   userNameElement.textContent = profileNameInput.value;
   userJobElement.textContent = profileJobInput.value;
   handleClosePopupProfileForm ();
+  evt.target.reset();
 };
 
 popupProfileForm.addEventListener('submit', handleProfileFormSubmit);
@@ -99,6 +111,7 @@ popupProfileForm.addEventListener('submit', handleProfileFormSubmit);
 //ФУНКЦИЯ  ОТКРЫТИЯ/ЗАКРЫТИЯ/СОХРАНЕНИЯ ФОРМЫ ДОБАВЛЕНИЯ КАРТОЧКИ
 function handleOpenAddPlacePopupForm() {
   openPopup(popupPlace);
+  disableButton(popupSubmitPlaceButton, config);
 };
 
 function handleCloseAddPlacePopupForm() {
@@ -174,13 +187,32 @@ initialCards.forEach(function(card) {
 });
 
 
+// Функция закрытия попапа при нажатии на Escape
+function closePopupByEscape (evt) {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened);
+  };
+}
 
+// Функция закрытия попапа кликом на оверлей
+// function closePopupByOverlayClick (popupList) {
+//   popupList.forEach((popup) => {
+//     popup.addEventListener('click', (evt) => {
+//     if (evt.target.classList.contains('popup_opened')) {
+//       closePopup(popup);
+//     }
+//   });
+//   });
+// }
 
-
-
-
-
-
-
+// вариант 2 Функции закрытия попапа кликом на оверлей
+popupList.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup(popup);
+  }
+});
+})
 
 

@@ -3,7 +3,7 @@
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
@@ -12,12 +12,16 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   min-height: 27px;
+  width: 100%;
 }
 
 .popup__input:focus {
   outline-color: #fff;
 }
 
-.popup__input:last-of-type {
+/* .popup__input:last-of-type {
   margin-bottom: 0;
-}
+}  */
+
+
+

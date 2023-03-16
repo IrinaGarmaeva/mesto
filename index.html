@@ -33,8 +33,7 @@
           <span class="sr-only">Добавить</span>
         </button>
       </section>
-      <section class="places" aria-label="Секция с карточками">
-      </section>
+      <section class="places" aria-label="Секция с карточками"></section>
     </main>
     <footer class="footer container">
       <p class="footer__text">&copy; 2023 Mesto Russia</p>
@@ -51,22 +50,35 @@
           class="popup__form popup__profile-form"
           id="popup-profile-form"
           name="profile-form"
+          novalidate
         >
-          <input
-            name="popup-username"
-            type="text"
-            class="popup__input popup__input_el_name"
-            placeholder="Имя"
-            required
-          />
-          <input
-            name="popup-job"
-            type="text"
-            class="popup__input popup__input_el_job"
-            placeholder="Описание"
-            required
-          />
-          <button class="popup__button" type="submit">Сохранить</button>
+          <fieldset class="popup__fieldset">
+            <label class="popup__field">
+              <input
+                name="popup-username"
+                type="text"
+                class="popup__input popup__input_el_name"
+                placeholder="Имя"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span class="popup__input-error popup-username-error"></span>
+            </label>
+            <label class="popup__field">
+              <input
+                name="popup-job"
+                type="text"
+                class="popup__input popup__input_el_job"
+                placeholder="Описание"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="popup__input-error popup-job-error"></span>
+            </label>
+            <button class="popup__button popup__button_type_profile" type="submit">Сохранить</button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -81,22 +93,33 @@
           action="URL"
           class="popup__form popup__place-form"
           name="place-form"
+          novalidate
         >
-          <input
-            name="popup-place"
-            type="text"
-            class="popup__input popup__input_el_place-name"
-            placeholder="Название"
-            required
-          />
-          <input
-            name="popup-link"
-            type="text"
-            class="popup__input popup__input_el_place-link"
-            placeholder="Ссылка на картинку"
-            required
-          />
-          <button class="popup__button" type="submit">Создать</button>
+          <fieldset class="popup__fieldset">
+            <label class="popup__field">
+              <input
+                name="popup-place"
+                type="text"
+                class="popup__input popup__input_el_place-name"
+                placeholder="Название"
+                minlength="2"
+                maxlength="30"
+                required
+              />
+              <span class="popup__input-error popup-place-error"></span>
+            </label>
+            <label class="popup__field">
+              <input
+                name="popup-link"
+                type="url"
+                class="popup__input popup__input_el_place-link"
+                placeholder="Ссылка на картинку"
+                required
+              />
+              <span class="popup__input-error popup-link-error"></span>
+            </label>
+            <button class="popup__button popup__button_type_place" type="submit">Создать</button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -127,5 +150,6 @@
       </article>
     </template>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
