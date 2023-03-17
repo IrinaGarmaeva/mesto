@@ -1,36 +1,4 @@
-// МАССИВ ДАННЫХ ДЛЯ КАРТОЧЕК ==================================================================================================
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-    alt: 'Архыз.'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-    alt: 'природа Челябинской области.'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-    alt: 'город Иваново.'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-    alt: 'природа Камчатки.'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-    alt: 'железная дорога в Холмогорском районе.'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-    alt: 'Байкал.'
-  }
-];
+
 
 const profileEditButton = document.querySelector('.button_type_edit');
 const popupCloseProfileEditButton = document.querySelector('.popup__close-button_type_profile');
@@ -64,14 +32,13 @@ const popupCloseImageButton = document.querySelector('.popup__close-button_type_
 
 
 // ПЕРЕМЕННЫЕ ДЛЯ ШАБЛОНА КАРТОЧЕК
-const cardTemplate = document.querySelector('#cardTemplate').content;
-
-// import { disableButton (button) } from "./validate0.js";
+const cardTemplate = document.querySelector('#cardTemplate');
 
 // УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ ОТКРЫТИЯ/ЗАКРЫТИЯ ПОПАПА
 function openPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEscape);
+  // clearInputError (popup, config);
 };
 
 function closePopup (popup) {
@@ -84,7 +51,6 @@ function handleOpenPopupProfile() {
   openPopup(popupProfile);
   profileNameInput.value = userNameElement.textContent;
   profileJobInput.value = userJobElement.textContent;
-  // disableButton(popupSubmitProfileButton);
 };
 
 profileEditButton.addEventListener('click', handleOpenPopupProfile);
@@ -109,9 +75,11 @@ function handleProfileFormSubmit(evt) {
 popupProfileForm.addEventListener('submit', handleProfileFormSubmit);
 
 //ФУНКЦИЯ  ОТКРЫТИЯ/ЗАКРЫТИЯ/СОХРАНЕНИЯ ФОРМЫ ДОБАВЛЕНИЯ КАРТОЧКИ
-function handleOpenAddPlacePopupForm() {
+function handleOpenAddPlacePopupForm(evt) {
   openPopup(popupPlace);
+  clearInputError (popupPlace, config);
   disableButton(popupSubmitPlaceButton, config);
+  popupPlaceForm.reset();
 };
 
 function handleCloseAddPlacePopupForm() {
@@ -140,23 +108,30 @@ function handleCloseImagePopup() {
   closePopup(popupImage);
 };
 
+//добавление лайка
+function addLikeButton (button) {
+  button.classList.toggle('place__like-button_active');
+};
+
+
 // Функция СОЗДАНИЯ КАРТОЧКИ====================================================================
 const placesContainer = document.querySelector('.places');
 
-function createNewCard (newName, newLink, newAlt) {
-  const userCard = cardTemplate.cloneNode('true');
+function createNewCard (newName, newLink) {
+  const userCard = cardTemplate.content.cloneNode('true');
 
   const cardHeading = userCard.querySelector('.place__name');
   const cardImage = userCard.querySelector('.place__photo');
   cardHeading.textContent = newName;
   cardImage.setAttribute('src', newLink);
-  cardImage.setAttribute('alt', newAlt);
+  cardImage.setAttribute('alt', newName);
 
   // добавление лайка
   const likeButton = userCard.querySelector('.place__like-button');
-  function addLikeButton () {
-    likeButton.classList.toggle('place__like-button_active');
-  };
+  // function addLikeButton () {
+  //   likeButton.classList.toggle('place__like-button_active');
+  // };
+  
   likeButton.addEventListener('click', addLikeButton);
 
   // добавление корзины(кнопки удаления карточки)
@@ -172,7 +147,7 @@ function createNewCard (newName, newLink, newAlt) {
   function popupOpenImage () {
     openPopup(popupImage);
     popupPhoto.setAttribute('src', newLink);
-    popupPhoto.setAttribute('alt', newAlt);
+    popupPhoto.setAttribute('alt', newName);
     popupImageHeading.textContent = newName;
   };
 
@@ -183,7 +158,7 @@ function createNewCard (newName, newLink, newAlt) {
 };
 
 initialCards.forEach(function(card) {
-  placesContainer.append(createNewCard(card.name, card.link, card.alt));
+  placesContainer.append(createNewCard(card.name, card.link));
 });
 
 

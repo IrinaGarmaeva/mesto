@@ -39,19 +39,20 @@ return inputList.some((inputElement) => {
 };
 
 // Функции для блокировки/разблокировки/переключения кнопок =================================================================
-function disableButton (button) {
-button.setAttribute('disabled', 'disabled');
-button.classList.add('popup__button_disabled'); // button.classList.add(config.inactiveButtonClass);
+function disableButton (buttonElement, config) {
+buttonElement.setAttribute('disabled', 'disabled');
+// buttonElement.classList.add('popup__button_disabled');
+buttonElement.classList.add(config.inactiveButtonClass);
 }
 
-function enableButton (button, config) {
-button.removeAttribute('disabled');
-button.classList.remove(config.inactiveButtonClass); // button.classList.remove('popup__button_disabled');
+function enableButton (buttonElement, config) {
+buttonElement.removeAttribute('disabled');
+buttonElement.classList.remove(config.inactiveButtonClass); // button.classList.remove('popup__button_disabled');
 }
 
 function toggleButtonState (inputList, buttonElement, config) {
 if (hasInvalidInput(inputList)) {
-  disableButton(buttonElement);
+  disableButton(buttonElement, config);
 } else {
   enableButton (buttonElement, config);
 }
@@ -78,7 +79,17 @@ formList.forEach((form) => {
   });
     setEventListeners(form, config);
   });
+
+
 };
 
 
 enableValidation(config);
+
+
+function clearInputError (form, config) {
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
+  inputList.forEach(input => {
+    hideInputError(form, input, config)
+  });
+}
