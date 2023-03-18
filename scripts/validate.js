@@ -4,12 +4,13 @@ const config = {
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   errorClass: 'popup__input-error_active',
+  inputErrorClass: 'popup__input_invalid',
 }
 
 // функция показа ошибки =================================================================
 function showInputError (form, input, errorMessage, config) {
 const errorElement = form.querySelector(`.${input.name}-error`);
-input.classList.add('popup__input_invalid');
+input.classList.add('config.inputErrorClass');
 errorElement.textContent = errorMessage;
 errorElement.classList.add(config.errorClass); // errorElement.classList.add('popup__input-error_active');
 }
@@ -17,7 +18,7 @@ errorElement.classList.add(config.errorClass); // errorElement.classList.add('po
 // функция скрытия ошибки =================================================================
 function hideInputError (form, input, config) {
 const errorElement = form.querySelector(`.${input.name}-error`);
-input.classList.remove('popup__input_invalid');
+input.classList.remove('config.inputErrorClass');
 errorElement.classList.remove(config.errorClass);
 errorElement.textContent = '';
 }

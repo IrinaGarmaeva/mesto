@@ -108,17 +108,13 @@ function handleCloseImagePopup() {
   closePopup(popupImage);
 };
 
-//добавление лайка
-function addLikeButton (button) {
-  button.classList.toggle('place__like-button_active');
-};
-
-
 // Функция СОЗДАНИЯ КАРТОЧКИ====================================================================
 const placesContainer = document.querySelector('.places');
 
 function createNewCard (newName, newLink) {
-  const userCard = cardTemplate.content.cloneNode('true');
+  const clone = cardTemplate.content;
+  const userCard = clone.querySelector('.place').cloneNode('true');
+  
 
   const cardHeading = userCard.querySelector('.place__name');
   const cardImage = userCard.querySelector('.place__photo');
@@ -128,10 +124,10 @@ function createNewCard (newName, newLink) {
 
   // добавление лайка
   const likeButton = userCard.querySelector('.place__like-button');
-  // function addLikeButton () {
-  //   likeButton.classList.toggle('place__like-button_active');
-  // };
-  
+  function addLikeButton () {
+    likeButton.classList.toggle('place__like-button_active');
+  };
+
   likeButton.addEventListener('click', addLikeButton);
 
   // добавление корзины(кнопки удаления карточки)
