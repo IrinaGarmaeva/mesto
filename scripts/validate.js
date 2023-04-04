@@ -1,11 +1,4 @@
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  errorClass: 'popup__input-error_active',
-  inputErrorClass: 'popup__input_invalid',
-}
+
 
 // функция показа ошибки =================================================================
 function showInputError (form, input, errorMessage, config) {
