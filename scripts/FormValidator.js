@@ -70,21 +70,16 @@ export class FormValidator {
   };
 
   clearInputError() {
-    // this._toggleButtonState();
     this._inputList.forEach(input => {
       this._hideInputError(input);
     });
   }
 
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(this._formListSelector));
 
-    formList.forEach((form) => {
-      form.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-      });
-        this._setEventListeners();
-      });
-  }
+    this._formElement.addEventListener('submit', function (evt) {
+      evt.preventDefault();
+    });
+    this._setEventListeners();
+  };
 };
-

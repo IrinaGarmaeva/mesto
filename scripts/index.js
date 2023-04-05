@@ -2,8 +2,6 @@ import { initialCards, config } from './consts.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 
-
-
 const profileEditButton = document.querySelector('.button_type_edit');
 const popupProfileForm = document.querySelector('.popup__profile-form');
 const profileNameInput = document.querySelector('.popup__input_el_name');
@@ -19,6 +17,9 @@ const popupPlaceForm = document.querySelector('.popup__place-form');
 const placeNameInput = document.querySelector('.popup__input_el_place-name');
 const placeLinkInput = document.querySelector('.popup__input_el_place-link');
 const popupButtonAddPlace = document.querySelector('.button_type_add');
+const popupOpenedImage = document.querySelector('.popup_type_open-image');
+const popupPhoto = document.querySelector('.popup__photo');
+const popupImageHeading = document.querySelector('.popup__heading');
 
 
 // УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ ОТКРЫТИЯ/ЗАКРЫТИЯ ПОПАПА=================================================================
@@ -36,7 +37,7 @@ function closePopup (popup) {
 // Функция ОТКРЫТИЯ ПОПАПА ПРОФИЛЯ ====================================================================================
 function handleOpenPopupProfile() {
   openPopup(popupProfile);
-  new FormValidator(config, popupProfileForm).clearInputError();
+  formValidators['profile-form'].clearInputError();
   profileNameInput.value = userNameElement.textContent;
   profileJobInput.value = userJobElement.textContent;
 };
@@ -58,9 +59,8 @@ popupProfileForm.addEventListener('submit', handleProfileFormSubmit);
 //ФУНКЦИЯ  ОТКРЫТИЯ/СОХРАНЕНИЯ ФОРМЫ ДОБАВЛЕНИЯ КАРТОЧКИ===============================================================
 function handleOpenAddPlacePopupForm(evt) {
   openPopup(popupPlace);
-  new FormValidator(config, popupPlaceForm).clearInputError();
-  new FormValidator(config, popupPlaceForm).disableButton();
-  // disableButton(popupSubmitPlaceButton, config);
+  formValidators['place-form'].clearInputError();
+  formValidators['place-form'].disableButton();
   popupPlaceForm.reset();
 };
 
@@ -73,9 +73,7 @@ function handleFormPlaceSubmit(evt) {
     alt: placeNameInput.value
   };
 
-  const cardNew = new Card(userCard, '#cardTemplate');
-  const cardNewElement = cardNew.generateCard();
-  placesContainer.prepend(cardNewElement);
+  placesContainer.prepend(createCard(userCard));
   closePopup(popupPlace);
   evt.target.reset();
 };
@@ -121,15 +119,36 @@ popupList.forEach((popup) => {
 });
 });
 
-initialCards.forEach((item) => {
-  const card = new Card(item, '#cardTemplate');
+// Создание карточек=====================================================
+function createCard(item) {
+  const card = new Card(item, '#cardTemplate', handleCardClick);
   const cardElement = card.generateCard();
+  return cardElement
+}
 
-  placesContainer.prepend(cardElement);
+initialCards.forEach((card) => {
+  placesContainer.prepend(createCard(card));
 });
 
-formList.forEach(form => {
-  const formValidated = new FormValidator(config, form)
-  formValidated.enableValidation();
-});
 
+export function handleCardClick(name, link) {
+  popupImageHeading.textContent = name;
+  popupPhoto.src = link;
+  popupPhoto.alt = name;
+  openPopup(popupOpenedImage);
+};
+
+// Запуск валидации форм================================================
+const formValidators = {}
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement)
+    const formName = formElement.getAttribute('name')
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+
+enableValidation(config);
