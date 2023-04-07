@@ -38,6 +38,7 @@ function closePopup (popup) {
 function handleOpenPopupProfile() {
   openPopup(popupProfile);
   formValidators['profile-form'].clearInputError();
+  formValidators['profile-form'].enableButton();
   profileNameInput.value = userNameElement.textContent;
   profileJobInput.value = userJobElement.textContent;
 };
