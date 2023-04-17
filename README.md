@@ -8,9 +8,12 @@
 
 ## Использованные технологии
 * HTML
+* BEM
 * CSS
 * GRID
 * Java Script
+* OOP
+* Webpack
 
 ## Планы по доработке
 * Добавить новые блоки place

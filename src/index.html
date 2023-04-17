@@ -5,17 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto Russia</title>
-    <link rel="stylesheet" href="./src/pages/index.css">
   </head>
   <body class="page">
     <header class="header">
-      <img src="./src/images/logo.svg" alt="логотип" class="header__logo" />
+      <img src="<%=require('./images/logo.svg')%>" alt="логотип" class="header__logo" />
     </header>
-     <main class="content container"> <!--container -->
+     <main class="content container">
       <section class="profile">
         <div class="profile__block">
           <img
-            src="./src/images/avatar.jpg"
+            src="<%=require('./images/avatar.jpg')%>"
             alt="аватар пользователя"
             class="profile__avatar"
           />
@@ -159,6 +158,5 @@
         </div>
       </article>
     </template>
-    <script src="./src/pages/index.js" type="module"></script>
   </body>
 </html>
