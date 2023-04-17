@@ -1,6 +1,3 @@
-
-import { handleCardClick } from "./index.js";
-
 export class Card {
   constructor (data, templateSelector, handleCardClick) {
     this._name = data.name;
