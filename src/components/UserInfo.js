@@ -6,13 +6,10 @@ class UserInfo {
   }
 
   getUserInfo() {
-
-    let data = new Object();
-    data = {
+    return {
     name: this._userName.textContent,
     occupation: this._userOccupation.textContent,
   }
-    return data;
   }
 
     setUserInfo({newUserName, newUserOccupation}) {

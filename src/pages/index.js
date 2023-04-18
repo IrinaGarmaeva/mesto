@@ -55,7 +55,7 @@ popupAddPlace.setEventListeners();
 popupButtonAddPlace.addEventListener('click', () => {
   popupAddPlace.open();
 
-  // formValidators['place-form'].clearInputError();
+  formValidators['place-form'].clearInputError();
   formValidators['place-form'].disableButton();
 })
 
