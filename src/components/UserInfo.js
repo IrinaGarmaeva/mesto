@@ -15,7 +15,6 @@ class UserInfo {
     setUserInfo({newUserName, newUserOccupation}) {
     this._userName.textContent = newUserName;
     this._userOccupation.textContent = newUserOccupation;
-    console.log(newUserName);
   }
 }
 

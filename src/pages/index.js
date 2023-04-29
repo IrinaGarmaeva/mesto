@@ -1,7 +1,6 @@
 import './index.css';
 
 import {
-  initialCards,
   config,
   profileEditButton,
   popupButtonAddPlace,
@@ -14,6 +13,27 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { Section } from '../components/Section.js';
+import { Api } from '../components/Api.js';
+
+let userId;
+
+// создание экземпляра класса Api
+const api = new Api({
+  baseUrl: 'https://nomoreparties.co/v1/cohort-65',
+  headers: {
+    authorization: '1ddaccfd-6cdb-4497-bcf7-c6a054674d3b',
+    'Content-Type': 'application/json'
+}
+});
+
+
+//отрисовка данных пользователя и карточек с сервера
+Promise.all([api.getUserData(), api.getInitialCards()]).then(([userProfile, cards]) => {
+  console.log(userProfile);
+  userInfo.setUserInfo({newUserName: userProfile.name, newUserOccupation: userProfile.about});
+  userId = userProfile._id;
+  cardList.renderItems(cards);
+})
 
 
 // создание экземпляра класса userInfo
@@ -25,7 +45,10 @@ const popupEditProfile = new PopupWithForm({popupSelector: '.popup_type_edit-pro
     'popup-username': name,
     'popup-job': occupation,
   } = inputValues;
-  userInfo.setUserInfo({newUserName: name, newUserOccupation: occupation});
+  // userInfo.setUserInfo({newUserName: name, newUserOccupation: occupation});
+  api.editUserData({newName: name, newAbout: occupation})
+  .then(({newUserName, newUserOccupation}) => userInfo.setUserInfo({newUserName: name, newUserOccupation: occupation}))
+  .catch(error => console.log("Ошибка редактирования информации о пользователе:", error))
 }});
 
 popupEditProfile.setEventListeners();
@@ -46,7 +69,9 @@ const popupAddPlace = new PopupWithForm({popupSelector: '.popup_type_add-place',
     'popup-place': name,
     'popup-link': link,
   } = inputValues;
-  createCard({name, link});
+  api.addNewCard({newName: name, newLink: link})
+  .then(({name, link}) => createCard({name, link}))
+  .catch(error => console.log("Ошибка добавления новой карточки:", error))
 }
 });
 
@@ -66,8 +91,8 @@ popupWithImage.setEventListeners();
 
 // создание экземпляра класса секшен для массива карточек
 
-const cardList = new Section({items: initialCards, renderer: createCard}, '.places');
-cardList.renderItems();
+const cardList = new Section({renderer: createCard}, '.places');
+
 
 
 // создание карточек==============
@@ -97,4 +122,7 @@ const enableValidation = (config) => {
 };
 
 enableValidation(config);
-console.log(formValidators);
+
+
+
+
