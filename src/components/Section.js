@@ -9,7 +9,7 @@ class Section {
   }
 
   renderItems(data) {
-    data.forEach(item => {
+    data.reverse().forEach(item => {
       this._renderer(item);
     });
   }

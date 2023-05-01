@@ -8,20 +8,29 @@
   </head>
   <body class="page">
     <header class="header">
-      <img src="<%=require('./images/logo.svg')%>" alt="логотип" class="header__logo" />
+      <img
+        src="<%=require('./images/logo.svg')%>"
+        alt="логотип"
+        class="header__logo"
+      />
     </header>
-     <main class="content container">
+    <main class="content container">
       <section class="profile">
         <div class="profile__block">
+          <div class="profile__block-avatar">
           <img
             src="<%=require('./images/avatar.jpg')%>"
             alt="аватар пользователя"
             class="profile__avatar"
           />
+          <button class="button_type_edit-avatar" type="button">
+            <span class="sr-only">Редактировать</span>
+          </button>
+          </div>
           <div class="profile__info">
             <div class="profile__change">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button class="button button_type_edit" type="button">
+              <button class="button button_type_edit-profile" type="button">
                 <span class="sr-only">Редактировать</span>
               </button>
             </div>
@@ -76,13 +85,13 @@
               />
               <span class="popup__input-error popup-job-error"></span>
             </label>
-            <button
+          </fieldset>
+          <button
               class="popup__button popup__button_type_profile"
               type="submit"
             >
               Сохранить
             </button>
-          </fieldset>
         </form>
       </div>
     </div>
@@ -102,7 +111,7 @@
           <fieldset class="popup__fieldset">
             <label class="popup__field">
               <input
-                name="popup-place"
+                name="card-name"
                 type="text"
                 class="popup__input popup__input_el_place-name"
                 placeholder="Название"
@@ -110,25 +119,25 @@
                 maxlength="30"
                 required
               />
-              <span class="popup__input-error popup-place-error"></span>
+              <span class="popup__input-error card-name-error"></span>
             </label>
             <label class="popup__field">
               <input
-                name="popup-link"
+                name="card-link"
                 type="url"
                 class="popup__input popup__input_el_place-link"
                 placeholder="Ссылка на картинку"
                 required
               />
-              <span class="popup__input-error popup-link-error"></span>
+              <span class="popup__input-error card-link-error"></span>
             </label>
-            <button
+          </fieldset>
+          <button
               class="popup__button popup__button_type_place"
               type="submit"
             >
               Создать
             </button>
-          </fieldset>
         </form>
       </div>
     </div>
@@ -139,9 +148,52 @@
             class="popup__close-button popup__close-button_type_image"
             type="button"
           ></button>
-          <img class="popup__photo" alt="#" src="#"/>
+          <img class="popup__photo" alt="#" src="#" />
           <figcaption class="popup__heading"></figcaption>
         </figure>
+      </div>
+    </div>
+    <!-- <div class="popup popup_type_confirm">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button"></button>
+        <h2 class="popup__title popup__title_type_popup-confirm">Вы уверены?</h2>
+        <div class="popup__form">
+          <button class="popup__button" type="submit">Да</button>
+        </div>
+      </div>
+    </div> -->
+    <div class="popup popup_type_update-avatar">
+      <div class="popup__container">
+        <button
+          class="popup__close-button popup__close-button_type_place"
+          type="button"
+        ></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form
+          action="URL"
+          class="popup__form popup__avatar-form"
+          name="avatar-form"
+          novalidate
+        >
+          <fieldset class="popup__fieldset">
+            <label class="popup__field">
+              <input
+                name="avatar-link"
+                type="url"
+                class="popup__input popup__input_el_avatar-link"
+                placeholder="Введите ссылку"
+                required
+              />
+              <span class="popup__input-error avatar-link-error"></span>
+            </label>
+          </fieldset>
+          <button
+              class="popup__button popup__button_type_place"
+              type="submit"
+            >
+              Сохранить
+            </button>
+        </form>
       </div>
     </div>
     <template id="cardTemplate">
@@ -152,9 +204,12 @@
         </button>
         <div class="place__descriprion">
           <h2 class="place__name"></h2>
-          <button class="place__like-button" type="button">
-            <span class="sr-only">Лайк</span>
-          </button>
+          <div class="place__like-container">
+            <button class="place__like-button" type="button">
+              <span class="sr-only">Лайк</span>
+            </button>
+            <p class="place__like-button__counter">0</p>
+          </div>
         </div>
       </article>
     </template>

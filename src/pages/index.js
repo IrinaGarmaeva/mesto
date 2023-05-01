@@ -2,7 +2,9 @@ import './index.css';
 
 import {
   config,
-  profileEditButton,
+  profileAvatar,
+  avatarEditButton,
+  profileEditProfileButton,
   popupButtonAddPlace,
   profileNameInput,
   profileOccupationInput
@@ -31,13 +33,14 @@ const api = new Api({
 Promise.all([api.getUserData(), api.getInitialCards()]).then(([userProfile, cards]) => {
   console.log(userProfile);
   userInfo.setUserInfo({newUserName: userProfile.name, newUserOccupation: userProfile.about});
+  userInfo.setUserAvatar(userProfile.avatar);
   userId = userProfile._id;
   cardList.renderItems(cards);
 })
 
 
 // создание экземпляра класса userInfo
-const userInfo = new UserInfo({userNameSelector: '.profile__name' , userOccupationSelector: '.profile__about'});
+const userInfo = new UserInfo({userNameSelector: '.profile__name' , userOccupationSelector: '.profile__about', avatarSelector: '.profile__avatar'});
 
 // создание экземпляра класса попапа редактирования профиля
 const popupEditProfile = new PopupWithForm({popupSelector: '.popup_type_edit-profile', callbackSubmitForm: (inputValues) => {
@@ -45,15 +48,15 @@ const popupEditProfile = new PopupWithForm({popupSelector: '.popup_type_edit-pro
     'popup-username': name,
     'popup-job': occupation,
   } = inputValues;
-  // userInfo.setUserInfo({newUserName: name, newUserOccupation: occupation});
+
   api.editUserData({newName: name, newAbout: occupation})
-  .then(({newUserName, newUserOccupation}) => userInfo.setUserInfo({newUserName: name, newUserOccupation: occupation}))
+  .then(() => userInfo.setUserInfo({newUserName: name, newUserOccupation: occupation}))
   .catch(error => console.log("Ошибка редактирования информации о пользователе:", error))
 }});
 
 popupEditProfile.setEventListeners();
 
-profileEditButton.addEventListener('click', () => {
+profileEditProfileButton.addEventListener('click', () => {
   popupEditProfile.open();
   const {name: profileNameTextContent, occupation:  profileOccupationTextContent } = userInfo.getUserInfo();
   profileNameInput.value = profileNameTextContent;
@@ -66,11 +69,11 @@ profileEditButton.addEventListener('click', () => {
 // создание экземпляра класса попапа добавления карточки
 const popupAddPlace = new PopupWithForm({popupSelector: '.popup_type_add-place', callbackSubmitForm: (inputValues) => {
   const {
-    'popup-place': name,
-    'popup-link': link,
+    'card-name': name,
+    'card-link': link,
   } = inputValues;
   api.addNewCard({newName: name, newLink: link})
-  .then(({name, link}) => createCard({name, link}))
+  .then(() => createCard({name, link}))
   .catch(error => console.log("Ошибка добавления новой карточки:", error))
 }
 });
@@ -110,6 +113,7 @@ function createCard(item) {
 
 // запуск валидации форм=======
 const formValidators = {}
+console.log(formValidators);
 
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector))
@@ -123,6 +127,24 @@ const enableValidation = (config) => {
 
 enableValidation(config);
 
+// создание экземпляра класса попапа изменения аватара
+const popupEditAvatar = new PopupWithForm({popupSelector: '.popup_type_update-avatar', callbackSubmitForm: (inputValue) => {
+  const {
+    'avatar-link': link,
+  } = inputValue;
+  api.setUserAvatar({link: link})
+  .then((res) => userInfo.setUserAvatar(res.avatar))
+  .catch(error => console.log("Ошибка редактирования аватара пользователя:", error))
+}})
 
+popupEditAvatar.setEventListeners();
+
+// слушатель для кнопки редактирования аватара
+avatarEditButton.addEventListener('click', () => {
+  popupEditAvatar.open();
+
+  formValidators['avatar-form'].clearInputError();
+  formValidators['avatar-form'].disableButton();
+});
 
 

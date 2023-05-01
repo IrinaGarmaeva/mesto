@@ -61,7 +61,41 @@ export class Api {
   // 7. Удаление карточки
 
   // 8. Постановка и снятие лайка
+  async putLike(cardId) {
+    const response = await fetch(`${this._baseUrl}/cardId/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+      body: JSON.stringify({
+
+      })
+
+    })
+    return this._checkResponse(response);
+  }
+
+  async deleteLike(cardId){
+    const response = await fetch(`${this._baseUrl}/cardId/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+      body: JSON.stringify({
+
+      })
+
+    })
+    return this._checkResponse(response);
+  }
 
   // 9. Обновление аватара пользователя
+  async setUserAvatar({link}) {
+    const response = await fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        "avatar": link,
+      }),
+    })
+    return this._checkResponse(response);
+  }
+
 
 }
