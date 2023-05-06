@@ -4,6 +4,7 @@ export class Api {
     this._headers = headers;
   }
 
+
   _checkResponse(res) {
     if (!res.ok) {
       return Promise.reject(`Ошибка: ${res.status}`);
@@ -11,7 +12,7 @@ export class Api {
       return res.json();
   }
 
-// 1 Загрузка информации о пользователе с сервера
+// Загрузка информации о пользователе с сервера
   async getUserData() {
     const response = await fetch(`${this._baseUrl}/users/me`, {
     headers: this._headers
@@ -19,7 +20,7 @@ export class Api {
     return this._checkResponse(response);
 }
 
-  // 2 Загрузка карточек с сервера
+  // Загрузка карточек с сервера
   async getInitialCards() {
     const response = await fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
@@ -27,7 +28,7 @@ export class Api {
       return this._checkResponse(response);
   };
 
-  // 3. Редактирование профиля
+  // Редактирование профиля
   async editUserData({newName, newAbout}) {
     const response = await fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
@@ -40,7 +41,7 @@ export class Api {
     return this._checkResponse(response);
   }
 
-  // 4. Добавление новой карточки
+  // Добавление новой карточки
   async addNewCard({newName, newLink}) {
     const response = await fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
@@ -54,38 +55,35 @@ export class Api {
     return this._checkResponse(response);
   }
 
-  // 5.Отображение количества лайков карточки
+  // Удаление карточки
+  async deleteCard(cardId) {
+    const response = await fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    return this._checkResponse(response);
+  }
 
-  // 6.Попап удаления карточки
-
-  // 7. Удаление карточки
-
-  // 8. Постановка и снятие лайка
+  // Постановка и снятие лайка
   async putLike(cardId) {
-    const response = await fetch(`${this._baseUrl}/cardId/likes`, {
+    const response = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers,
-      body: JSON.stringify({
-
-      })
-
     })
+
     return this._checkResponse(response);
   }
 
   async deleteLike(cardId){
-    const response = await fetch(`${this._baseUrl}/cardId/likes`, {
+    const response = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers,
-      body: JSON.stringify({
-
-      })
-
     })
+
     return this._checkResponse(response);
   }
 
-  // 9. Обновление аватара пользователя
+  // Обновление аватара пользователя
   async setUserAvatar({link}) {
     const response = await fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
@@ -96,6 +94,4 @@ export class Api {
     })
     return this._checkResponse(response);
   }
-
-
 }

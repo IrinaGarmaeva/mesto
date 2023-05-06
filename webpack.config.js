@@ -11,6 +11,7 @@ module.exports = {
     publicPath: ''
   },
   mode: 'production',
+  devtool: "source-map",
   devServer: {
     // static: path.resolve(__dirname, './dist'),
     port: 8080,
