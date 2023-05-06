@@ -3,7 +3,6 @@ import './index.css';
 import {
   config,
   profileAvatar,
-  avatarEditButton,
   profileEditProfileButton,
   popupButtonAddPlace,
   profileNameInput,
@@ -106,7 +105,7 @@ const popupEditAvatar = new PopupWithForm({popupSelector: '.popup_type_update-av
 
 popupEditAvatar.setEventListeners();
 
-avatarEditButton.addEventListener('click', () => {
+profileAvatar.addEventListener('click', () => {
   popupEditAvatar.open();
   popupEditAvatar.renderLoading(false);
   formValidators['avatar-form'].clearInputError();

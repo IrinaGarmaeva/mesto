@@ -36,11 +36,10 @@ const config = {
 };
 
 const profileAvatar = document.querySelector('.profile__avatar');
-const avatarEditButton = document.querySelector('.button_type_edit-avatar');
 const profileEditProfileButton = document.querySelector('.button_type_edit-profile');
 const popupButtonAddPlace = document.querySelector('.button_type_add');
 const profileNameInput = document.querySelector('.popup__input_el_name');
 const profileOccupationInput = document.querySelector('.popup__input_el_job');
 
 
-export { config, profileAvatar, avatarEditButton, profileEditProfileButton,popupButtonAddPlace, profileNameInput, profileOccupationInput };
+export { config, profileAvatar, profileEditProfileButton,popupButtonAddPlace, profileNameInput, profileOccupationInput };
