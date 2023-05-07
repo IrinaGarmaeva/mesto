@@ -10,7 +10,6 @@ export class Card {
     this._ownerId = data.owner._id;
     this.handleLikeClick = handleLikeClick;
     this.handleDeleteIconClick = handleDeleteIconClick;
-
   };
 
   _getTemplate() {
@@ -41,18 +40,22 @@ export class Card {
     return this._likes.some((item) => item._id === this._userId)
   }
 
-  _toggleLike() {
-    if (this.isLiked) {
-      this.removeCardLike();
-    } else {
+  _toggleLikeState() {
+    if (this.isLiked()) {
+      // this._buttonLike.classList.add('place__like-button_active');
       this.addCardLike();
+      // this.removeCardLike();
+    } else {
+      this.removeCardLike();
+      // this.addCardLike();
+      // this._buttonLike.classList.remove('place__like-button_active');
     }
   }
 
   removeCard() {
     this._element.remove();
   }
-  
+
   _setEventListeners() {
    this._buttonLike.addEventListener('click', () => {
     this.handleLikeClick(this);
@@ -77,13 +80,14 @@ export class Card {
     this._element.querySelector('.place__name').textContent = this._name;
     this._cardImage.alt = this._name;
 
-    this._toggleLike();
     this._elementLikesCounter = this._element.querySelector('.place__like-button__counter');
     this._elementLikesCounter.textContent = this._likes.length;
 
     if (this._ownerId !== this._userId) {
       this._buttonDeleteBasket.remove();
     }
+
+  this._toggleLikeState();
 
     this._setEventListeners();
     return this._element;

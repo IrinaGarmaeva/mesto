@@ -29,12 +29,14 @@ const api = new Api({
 });
 
 //отрисовка данных пользователя и карточек с сервера
-Promise.all([api.getUserData(), api.getInitialCards()]).then(([userProfile, cards]) => {
+Promise.all([api.getUserData(), api.getInitialCards()])
+.then(([userProfile, cards]) => {
   userInfo.setUserInfo({newUserName: userProfile.name, newUserOccupation: userProfile.about});
   userInfo.setUserAvatar(userProfile.avatar);
   userId = userProfile._id;
   cardList.renderItems(cards);
 })
+.catch(error => console.log(`Error: ${error.status}`))
 
 
 // создание экземпляра класса userInfo
@@ -46,17 +48,16 @@ const popupEditProfile = new PopupWithForm({popupSelector: '.popup_type_edit-pro
     'popup-username': name,
     'popup-job': occupation,
   } = inputValues;
-  popupEditProfile.renderLoading(true);
-  api.editUserData({newName: name, newAbout: occupation})
+
+  return api.editUserData({newName: name, newAbout: occupation})
   .then(() => userInfo.setUserInfo({newUserName: name, newUserOccupation: occupation}))
-  .catch(error => console.log("Ошибка редактирования информации о пользователе:", error))
+  .catch(error => console.log(`${error} едактирования информации о пользователе :${error.status}`))
 }});
 
 popupEditProfile.setEventListeners();
 
 profileEditProfileButton.addEventListener('click', () => {
   popupEditProfile.open();
-  popupEditProfile.renderLoading(false);
   const {name: profileNameTextContent, occupation:  profileOccupationTextContent } = userInfo.getUserInfo();
   profileNameInput.value = profileNameTextContent;
   profileOccupationInput.value = profileOccupationTextContent;
@@ -71,10 +72,10 @@ const popupAddPlace = new PopupWithForm({popupSelector: '.popup_type_add-place',
     'card-name': name,
     'card-link': link,
   } = inputValues;
-  popupAddPlace.renderLoading(true);
-  api.addNewCard({newName: name, newLink: link})
+
+  return api.addNewCard({newName: name, newLink: link})
   .then((card) => createCard(card))
-  .catch(error => console.log("Ошибка добавления новой карточки:", error))
+  .catch(error => console.log(`${error} добавления новой карточки :${error.status}`))
 }
 });
 
@@ -82,7 +83,7 @@ popupAddPlace.setEventListeners();
 
 popupButtonAddPlace.addEventListener('click', () => {
   popupAddPlace.open();
-  popupAddPlace.renderLoading(false);
+
   formValidators['place-form'].clearInputError();
   formValidators['place-form'].disableButton();
 })
@@ -97,17 +98,17 @@ const popupEditAvatar = new PopupWithForm({popupSelector: '.popup_type_update-av
   const {
     'avatar-link': link,
   } = inputValue;
-  popupEditAvatar.renderLoading(true);
-  api.setUserAvatar({link: link})
+
+  return api.setUserAvatar({link: link})
   .then((res) => userInfo.setUserAvatar(res.avatar))
-  .catch(error => console.log("Ошибка редактирования аватара пользователя:", error))
+  .catch(error => console.log(`${error} редактирования аватара пользователя :${error.status}`))
 }})
 
 popupEditAvatar.setEventListeners();
 
 profileAvatar.addEventListener('click', () => {
   popupEditAvatar.open();
-  popupEditAvatar.renderLoading(false);
+
   formValidators['avatar-form'].clearInputError();
   formValidators['avatar-form'].disableButton();
 });
@@ -122,9 +123,9 @@ function handleDeleteIconClick(card) {
     api.deleteCard(card.cardId)
     .then(() => {
       card.removeCard();
-      popupWithConfirm.close();
+      // popupWithConfirm.close();
     })
-    .catch((error) => console.log("Ошибка удаления карточки:", error))
+    .catch(error => console.log(`${error} удаления карточки :${error.status}`))
   }
 
   popupWithConfirm.setSubmitAction(submitFormConfirm);
@@ -184,7 +185,7 @@ function handleLikeClick(card) {
       card.addCardLike();
       card.countLikes(res);
     })
-    .catch((error) => console.log("Ошибка постановки лайка:", error))
+    .catch(error => console.log(`${error} постановки лайка :${error.status}`))
   }
   }
 
