@@ -123,7 +123,7 @@ function handleDeleteIconClick(card) {
     api.deleteCard(card.cardId)
     .then(() => {
       card.removeCard();
-      // popupWithConfirm.close();
+      popupWithConfirm.close();
     })
     .catch(error => console.log(`${error} удаления карточки :${error.status}`))
   }
