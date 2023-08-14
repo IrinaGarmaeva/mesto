@@ -1,4 +1,4 @@
-# Edicational purpose project "Mesto" on vanilla JS from [Yandex Practicum](https://practicum.yandex.ru/) Web-developer course.
+# Educational purpose project "Mesto" on vanilla JS from [Yandex Practicum](https://practicum.yandex.ru/) Web-developer course.
 
 ## Description
 
